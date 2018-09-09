@@ -15,7 +15,7 @@ namespace BankingApplication.Web.Controllers
 
         public IActionResult Index()
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SignedInUserEmail")))
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SignedInUserLoginName")))
             {
                 return Redirect("/Account/Index");
             }
@@ -43,9 +43,9 @@ namespace BankingApplication.Web.Controllers
 
         public IActionResult ViewTransaction()
         {
-            string signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrWhiteSpace(signedInUserEmail)) return Redirect("SignIn");
-            var account = _accountService.GetAccountByEmail(signedInUserEmail);
+            string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+            var account = _accountService.GetAccountByLoginName(signedInUserLoginName);
             var transactions = _accountService.GetTheirOwnTransactions(account.ID);
             
             return View(transactions);

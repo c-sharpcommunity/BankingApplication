@@ -20,9 +20,9 @@ namespace BankingApplication.Web.Controllers
 
         public IActionResult Index()
         {
-            var signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrEmpty(signedInUserEmail)) return Redirect("/Home/Index");
-            var signedInAcc = _accountService.GetAccountByEmail(signedInUserEmail);
+            var signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrEmpty(signedInUserLoginName)) return Redirect("/Home/Index");
+            var signedInAcc = _accountService.GetAccountByLoginName(signedInUserLoginName);
             return View(signedInAcc);
         }
 
@@ -46,9 +46,9 @@ namespace BankingApplication.Web.Controllers
         [HttpGet]
         public IActionResult Edit()
         {
-            var signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrWhiteSpace(signedInUserEmail)) return Redirect("SignIn");
-            var account = _accountService.GetAccountByEmail(signedInUserEmail);
+            var signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+            var account = _accountService.GetAccountByLoginName(signedInUserLoginName);
             if (account == null) return NotFound();
 
             return View(account);
@@ -58,13 +58,12 @@ namespace BankingApplication.Web.Controllers
         [HttpPost]
         public IActionResult Edit(int? id, byte[] rowVersion)
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserEmail"))) return Redirect("SignIn");
+            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserLoginName"))) return Redirect("SignIn");
 
             if (id == null)
             {
                 return NotFound();
             }
-            string signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
 
             var accountToUpdate = new Account { ID = id.GetValueOrDefault(), RowVersion = rowVersion };
             TryUpdateModelAsync(accountToUpdate);
@@ -101,7 +100,7 @@ namespace BankingApplication.Web.Controllers
             Account acc = _accountService.GetAccount(username, hashedPassword);
             if (acc != null)
             {
-                HttpContext.Session.SetString("SignedInUserEmail", username.ToLower());
+                HttpContext.Session.SetString("SignedInUserLoginName", username.ToLower());
                 return View("Index", acc);
             }
 
@@ -111,56 +110,55 @@ namespace BankingApplication.Web.Controllers
 
         public IActionResult SignOut()
         {
-            HttpContext.Session.Remove("SignedInUserEmail");
+            HttpContext.Session.Remove("SignedInUserLoginName");
             HttpContext.Session.Clear();
             return Redirect("/Home/Index");
         }
 
         [HttpPost]
-        public IActionResult SignUp(string email, string name, string password)
+        public IActionResult SignUp(string loginName, string name, string password)
         {
-            string number = Helper.GenerateNumber(email, name);
+            string number = Helper.GenerateNumber(loginName, name);
             string hashedPassword = !string.IsNullOrEmpty(password) ? Helper.GenerateHashedPassword(password) : string.Empty;
 
             Account acc = new Account
             {
-                Email = email,
-                FullName = name,
+                LoginName = name,
                 Balance = 0M,
                 CreatedDate = DateTime.Now,
-                Number = number,
+                AccountNumber = number,
                 Password = hashedPassword
             };
             AccountDto accDto = _accountService.CreateAccount(acc);
 
-            HttpContext.Session.SetString("SignedInUserEmail", email.ToLower());
+            HttpContext.Session.SetString("SignedInUserLoginName", loginName.ToLower());
             return View("Index", acc);
         }
 
         public IActionResult Deposit()
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserEmail"))) return Redirect("SignIn");
+            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserLoginName"))) return Redirect("SignIn");
             return View();
         }
 
         public IActionResult Withdraw()
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserEmail"))) return Redirect("SignIn");
+            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserLoginName"))) return Redirect("SignIn");
             return View();
         }
 
         public IActionResult Transfer()
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserEmail"))) return Redirect("SignIn");
+            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserLoginName"))) return Redirect("SignIn");
             return View();
         }
 
         [HttpPost]
         public IActionResult Deposit(Transaction transaction)
         {
-            string signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrWhiteSpace(signedInUserEmail)) return Redirect("SignIn");
-            Account signedInUser = _accountService.GetAccountByEmail(signedInUserEmail);
+            string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+            Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
             transaction.Type = TransactionType.Deposit;
             transaction.CreatedDate = DateTime.Now;
             transaction.ToAccount = signedInUser;
@@ -176,9 +174,9 @@ namespace BankingApplication.Web.Controllers
         [HttpPost]
         public IActionResult Withdraw(Transaction transaction)
         {
-            string signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrWhiteSpace(signedInUserEmail)) return Redirect("SignIn");
-            Account signedInUser = _accountService.GetAccountByEmail(signedInUserEmail);
+            string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+            Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
             transaction.Type = TransactionType.Withdraw;
             transaction.CreatedDate = DateTime.Now;
             transaction.FromAccount = signedInUser;
@@ -199,10 +197,10 @@ namespace BankingApplication.Web.Controllers
         [HttpPost]
         public IActionResult Transfer(Transaction transaction)
         {
-            string signedInUserEmail = HttpContext.Session.GetString("SignedInUserEmail");
-            if (string.IsNullOrWhiteSpace(signedInUserEmail)) return Redirect("SignIn");
-            Account signedInUser = _accountService.GetAccountByEmail(signedInUserEmail);
-            Account toAccount = _accountService.GetAccountByNumber(transaction.ToAccount.Number.Trim());
+            string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+            Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
+            Account toAccount = _accountService.GetAccountByAccountNumber(transaction.ToAccount.AccountNumber.Trim());
             transaction.Type = TransactionType.Transfer;
             transaction.CreatedDate = DateTime.Now;
             transaction.FromAccount = signedInUser;

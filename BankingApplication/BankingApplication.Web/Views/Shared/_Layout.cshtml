@@ -63,7 +63,7 @@
                                             <a class="sf-with-ul-pre" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                                         </li>
 
-                                        @if (Context.Session.GetString("SignedInUserEmail") != null)
+                                        @if (Context.Session.GetString("SignedInUserLoginName") != null)
                                         {
                                             <li class="menu-item menu-item-has-children financity-normal-menu">
                                                 <a style="color:red;" class="sf-with-ul-pre">Log out</a>

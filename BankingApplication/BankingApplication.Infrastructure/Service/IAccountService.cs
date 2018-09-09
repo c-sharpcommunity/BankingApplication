@@ -7,8 +7,8 @@ namespace BankingApplication.Infrastructure.Service
     public interface IAccountService
     {
         Account GetAccount(string email, string password);
-        Account GetAccountByEmail(string email);
-        Account GetAccountByNumber(string number);
+        Account GetAccountByLoginName(string loginName);
+        Account GetAccountByAccountNumber(string accountNumber);
         Account GetAccount(int id);
         IEnumerable<Account> GetListAllUser();
         AccountDto CreateAccount(Account user);

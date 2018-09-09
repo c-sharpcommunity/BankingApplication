@@ -6,9 +6,9 @@ namespace BankingApplication.Infrastructure.Repository
     {
         IEnumerable<T> GetAll(int id);
         T GetById(int id);
-        T GetByEmail(string email);
-        T GetByNumber(string number);
-        T GetByEmailAndPassword(string email, string password);
+        T GetByAccountNumber(string accountNumber);
+        T GetByLoginName(string loginName);
+        T GetByLoginNameAndPassword(string LoginName, string password);
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);

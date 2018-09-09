@@ -25,7 +25,6 @@ namespace BankingApplication.Infrastructure.Service
             accountDto.Account = user;
             try
             {
-                //var result = await _dbContext.SaveChangesAsync();
                 _accountRespository.Create(user);
             }
             catch (Exception ex)
@@ -39,17 +38,17 @@ namespace BankingApplication.Infrastructure.Service
             return accountDto;
         }
         
-        public Account GetAccount(string email, string password)
+        public Account GetAccount(string loginName, string password)
         {
-            return _accountRespository.GetByEmailAndPassword(email, password);
+            return _accountRespository.GetByLoginNameAndPassword(loginName, password);
         }
-        public Account GetAccountByEmail(string email)
+        public Account GetAccountByLoginName(string loginName)
         {
-            return _accountRespository.GetByEmail(email);
+            return _accountRespository.GetByLoginName(loginName);
         }
-        public Account GetAccountByNumber(string number)
+        public Account GetAccountByAccountNumber(string accountNumber)
         {
-            return _accountRespository.GetByNumber(number);
+            return _accountRespository.GetByAccountNumber(accountNumber);
         }
         public Account GetAccount(int id)
         {
@@ -74,8 +73,7 @@ namespace BankingApplication.Infrastructure.Service
             }
             else
             {
-                foundAccount.Address = user.Address;
-                foundAccount.FullName = user.FullName;
+                foundAccount.LoginName = user.LoginName;
 
                 foundAccount.RowVersion = user.RowVersion;
 
@@ -103,8 +101,7 @@ namespace BankingApplication.Infrastructure.Service
 
             Account toAccount = trans.ToAccount == null ? null : _accountRespository.GetById(trans.ToAccount.ID);
             Account fromAccount = trans.FromAccount == null ? null : _accountRespository.GetById(trans.FromAccount.ID);
-
-
+            
             try
             {
                 string connectionString = "Server = localhost; Database = SimpleBankApp; Trusted_Connection = True; ";
@@ -185,8 +182,8 @@ namespace BankingApplication.Infrastructure.Service
             var errMsg = string.Empty;
 
             if (trans == null || trans.Amount <= 0 || trans.FromAccount.Balance < trans.Amount) errMsg = "Invalid amount";
-            if (trans.FromAccount == null || string.IsNullOrEmpty(trans.FromAccount.Number)) errMsg += " Invalid FromAccount";
-            if (trans.ToAccount == null || string.IsNullOrEmpty(trans.ToAccount.Number)) errMsg += " Invalid ToAccount";
+            if (trans.FromAccount == null || string.IsNullOrEmpty(trans.FromAccount.AccountNumber)) errMsg += " Invalid FromAccount";
+            if (trans.ToAccount == null || string.IsNullOrEmpty(trans.ToAccount.AccountNumber)) errMsg += " Invalid ToAccount";
 
             return string.Empty;
         }
@@ -209,10 +206,10 @@ namespace BankingApplication.Infrastructure.Service
             else
             {
                 //var databaseValues = (Account)databaseEntry.ToObject();
-                //if (databaseValues.FullName != clientValues.FullName)
+                //if (databaseValues.LoginName != clientValues.LoginName)
                 //{
-                //    if (string.IsNullOrEmpty(prefix)) errors.Add("FullName", $"Current value: {databaseValues.FullName}");
-                //    else errors.Add($"{prefix}.FullName", $"Current value: {databaseValues.FullName}");
+                //    if (string.IsNullOrEmpty(prefix)) errors.Add("LoginName", $"Current value: {databaseValues.LoginName}");
+                //    else errors.Add($"{prefix}.LoginName", $"Current value: {databaseValues.LoginName}");
                 //}
                 //if (databaseValues.Address != clientValues.Address)
                 //{

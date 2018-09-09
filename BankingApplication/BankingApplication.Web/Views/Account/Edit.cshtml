@@ -34,31 +34,15 @@
                                     <input type="hidden" asp-for="RowVersion" />
 
                                     <span class="wpcf7-form-control-wrap your-name">
-                                        <label asp-for="Number" class="col-md-2 control-label"></label>
-                                        :@Model.Number
+                                        <label asp-for="AccountNumber" class="col-md-2 control-label"></label>
+                                        :@Model.AccountNumber
                                     </span>
                                 </div>
-
+                                
                                 <div class="gdlr-core-column-60">
+                                    <label asp-for="LoginName" class="col-md-2 control-label"></label>
                                     <span class="wpcf7-form-control-wrap your-name">
-                                        <label asp-for="Email" class="col-md-2 control-label"></label>
-                                        :@Model.Email
-                                    </span>
-                                </div>
-
-                                <div class="gdlr-core-column-60">
-                                    <label asp-for="FullName" class="col-md-2 control-label"></label>
-                                    <span class="wpcf7-form-control-wrap your-name">
-                                        <input style="border-style: dashed;" asp-for="FullName" class="form-control" />
-                                        <span asp-validation-for="FullName" class="text-danger"></span>
-                                    </span>
-                                </div>
-
-                                <div class="gdlr-core-column-60">
-                                    <label asp-for="Address" class="col-md-2 control-label"></label>
-                                    <span class="wpcf7-form-control-wrap your-name">
-                                        <input style="border-style: dashed;" asp-for="Address" class="form-control" />
-                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                        :@Model.LoginName
                                     </span>
                                 </div>
 

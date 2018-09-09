@@ -71,12 +71,10 @@ namespace BankingApplication.Infrastructure.Repository
                             {
                                 p = new Account();
                                 p.ID = (int)reader["ID"];
-                                p.Number = reader["Number"].ToString();
-                                p.Email = reader["Email"].ToString();
-                                p.FullName = reader["FullName"].ToString();
+                                p.AccountNumber = reader["AccountNumber"].ToString();
+                                p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
-                                p.Address = reader["Address"].ToString();
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
                         }
@@ -110,12 +108,10 @@ namespace BankingApplication.Infrastructure.Repository
                             {
                                 p = new Account();
                                 p.ID = (int)reader["ID"];
-                                p.Number = reader["Number"].ToString();
-                                p.Email = reader["Email"].ToString();
-                                p.FullName = reader["FullName"].ToString();
+                                p.AccountNumber = reader["AccountNumber"].ToString();
+                                p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
-                                p.Address = reader["Address"].ToString();
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
                         }
@@ -128,52 +124,14 @@ namespace BankingApplication.Infrastructure.Repository
                 return p;
             }
         }
-
-        public Account GetByEmail(string email)
+        
+        public Account GetByLoginNameAndPassword(string loginName, string password)
         {
             using (var conn = new SqlConnection(_conn))
             {
-                string sql = "Select * FROM Account WHERE Email = @Email";
+                string sql = "Select * FROM Account WHERE LoginName=@loginName AND Password =@Password";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Email", email);
-                Account p = null;
-                try
-                {
-                    conn.Open();
-                    using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                    {
-                        if (reader.HasRows)
-                        {
-                            if (reader.Read())
-                            {
-                                p = new Account();
-                                p.ID = (int)reader["ID"];
-                                p.Number = reader["Number"].ToString();
-                                p.Email = reader["Email"].ToString();
-                                p.FullName = reader["FullName"].ToString();
-                                p.Balance = (decimal)reader["Balance"];
-                                p.CreatedDate = (DateTime)reader["CreatedDate"];
-                                p.Address = reader["Address"].ToString();
-                                p.RowVersion = (byte[])reader["RowVersion"];
-                            }
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-                return p;
-            }
-        }
-
-        public Account GetByEmailAndPassword(string email, string password)
-        {
-            using (var conn = new SqlConnection(_conn))
-            {
-                string sql = "Select * FROM Account WHERE Email=@email AND Password =@Password";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@LoginName", loginName);
                 cmd.Parameters.AddWithValue("@Password", password);
                 Account p = null;
                 try
@@ -187,12 +145,10 @@ namespace BankingApplication.Infrastructure.Repository
                             {
                                 p = new Account();
                                 p.ID = (int)reader["ID"];
-                                p.Number = reader["Number"].ToString();
-                                p.Email = reader["Email"].ToString();
-                                p.FullName = reader["FullName"].ToString();
+                                p.AccountNumber = reader["AccountNumber"].ToString();
+                                p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
-                                p.Address = reader["Address"].ToString();
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
                         }
@@ -206,13 +162,13 @@ namespace BankingApplication.Infrastructure.Repository
             }
         }
 
-        public Account GetByNumber(string number)
+        public Account GetByAccountNumber(string accountNumber)
         {
             using (var conn = new SqlConnection(_conn))
             {
-                string sql = "Select * FROM Account WHERE Number=@number";
+                string sql = "Select * FROM Account WHERE AccountNumber=@accountNumber";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Number", number);
+                cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
                 Account p = null;
                 try
                 {
@@ -225,12 +181,46 @@ namespace BankingApplication.Infrastructure.Repository
                             {
                                 p = new Account();
                                 p.ID = (int)reader["ID"];
-                                p.Number = reader["Number"].ToString();
-                                p.Email = reader["Email"].ToString();
-                                p.FullName = reader["FullName"].ToString();
+                                p.AccountNumber = reader["AccountNumber"].ToString();
+                                p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
-                                p.Address = reader["Address"].ToString();
+                                p.RowVersion = (byte[])reader["RowVersion"];
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                return p;
+            }
+        }
+
+        public Account GetByLoginName(string loginName)
+        {
+            using (var conn = new SqlConnection(_conn))
+            {
+                string sql = "Select * FROM Account WHERE LoginName=@loginName";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@LoginName", loginName);
+                Account p = null;
+                try
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        if (reader.HasRows)
+                        {
+                            if (reader.Read())
+                            {
+                                p = new Account();
+                                p.ID = (int)reader["ID"];
+                                p.AccountNumber = reader["AccountNumber"].ToString();
+                                p.LoginName = reader["LoginName"].ToString();
+                                p.Balance = (decimal)reader["Balance"];
+                                p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
                         }
@@ -248,15 +238,13 @@ namespace BankingApplication.Infrastructure.Repository
         {
             using (var conn = new SqlConnection(_conn))
             {
-                string sql = "INSERT INTO Account (Number, Email, FullName, Balance, CreatedDate, Address) VALUES (@Number, @Email, @FullName, @Balance, @CreatedDate, @Address)";
+                string sql = "INSERT INTO Account (AccountNumber, LoginName, Balance, CreatedDate) VALUES (@AccountNumber, @LoginName, @Balance, @CreatedDate)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Number", entity.Number);
-                cmd.Parameters.AddWithValue("@Email", entity.Email);
-                cmd.Parameters.AddWithValue("@FullName", entity.FullName);
+                cmd.Parameters.AddWithValue("@AccountNumber", entity.AccountNumber);
+                cmd.Parameters.AddWithValue("@LoginName", entity.LoginName);
                 cmd.Parameters.AddWithValue("@Password", entity.Password);
                 cmd.Parameters.AddWithValue("@Balance", entity.Balance);
                 cmd.Parameters.AddWithValue("@CreatedDate", entity.CreatedDate);
-                cmd.Parameters.AddWithValue("@Address", entity.Address);
                 try
                 {
                     conn.Open();
@@ -274,21 +262,16 @@ namespace BankingApplication.Infrastructure.Repository
             using (var conn = new SqlConnection(_conn))
             using (SqlCommand command = conn.CreateCommand())
             {
-                command.CommandText = "UPDATE Account SET Number = @Number, Email = @Email, FullName = @FullName, Balance = @Balance, Address = @Address Where ID = @ID";
+                command.CommandText = "UPDATE Account SET AccountNumber = @AccountNumber, LoginName = @LoginName, Balance = @Balance Where ID = @ID";
 
-                if (!string.IsNullOrEmpty(entity.Number))
+                if (!string.IsNullOrEmpty(entity.AccountNumber))
                 {
-                    command.Parameters.AddWithValue("@Number", entity.Number);
+                    command.Parameters.AddWithValue("@AccountNumber", entity.AccountNumber);
                 }
-
-                if (!string.IsNullOrEmpty(entity.Email))
+                
+                if (!string.IsNullOrEmpty(entity.LoginName))
                 {
-                    command.Parameters.AddWithValue("@Email", entity.Email);
-                }
-
-                if (!string.IsNullOrEmpty(entity.FullName))
-                {
-                    command.Parameters.AddWithValue("@FullName", entity.FullName);
+                    command.Parameters.AddWithValue("@LoginName", entity.LoginName);
                 }
 
                 if (!string.IsNullOrEmpty(entity.Password))
@@ -300,12 +283,7 @@ namespace BankingApplication.Infrastructure.Repository
                 {
                     command.Parameters.AddWithValue("@Balance", entity.Balance);
                 }
-
-                if (!string.IsNullOrEmpty(entity.Address))
-                {
-                    command.Parameters.AddWithValue("@Address", entity.Address);
-                }
-
+                
                 if (entity.ID > 0)
                 {
                     command.Parameters.AddWithValue("@ID", entity.ID);
@@ -336,12 +314,10 @@ namespace BankingApplication.Infrastructure.Repository
                         {
                             p = new Account();
                             p.ID = (int)reader["ID"];
-                            p.Number = reader["Number"].ToString();
-                            p.Email = reader["Email"].ToString();
-                            p.FullName = reader["FullName"].ToString();
+                            p.AccountNumber = reader["AccountNumber"].ToString();
+                            p.LoginName = reader["LoginName"].ToString();
                             p.Balance = (decimal)reader["Balance"];
                             p.CreatedDate = (DateTime)reader["CreatedDate"];
-                            p.Address = reader["Address"].ToString();
                             p.RowVersion = (byte[])reader["RowVersion"];
                             list.Add(p);
                         }

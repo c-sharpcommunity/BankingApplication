@@ -34,12 +34,12 @@ namespace BankingApplication.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public Transaction GetByEmailAndPassword(string email, string password)
+        public Transaction GetByLoginNameAndPassword(string loginName, string password)
         {
             throw new NotImplementedException();
         }
 
-        public Transaction GetByNumber(string number)
+        public Transaction GetByAccountNumber(string number)
         {
             throw new NotImplementedException();
         }
@@ -203,7 +203,9 @@ namespace BankingApplication.Infrastructure.Repository
             }
         }
 
-
-
+        public Transaction GetByLoginName(string loginName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
