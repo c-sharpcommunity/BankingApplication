@@ -1,0 +1,299 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - BankingApplication.Web</title>
+
+    <environment include="Development">
+        <link rel='stylesheet' href="~/plugins/revslider/public/assets/css/settings.css" type='text/css' media='all'>
+        <link rel='stylesheet' href="~/css/style-core.css" type='text/css' media='all'>
+        <link rel='stylesheet' href="~/css/financity-style-custom.css" type='text/css' media='all'>
+        <link rel='stylesheet' href="~/plugins/goodlayers-core/plugins/combine/style.css" type='text/css' media='all'>
+        <link rel='stylesheet' href="~/plugins/goodlayers-core/include/css/page-builder.css" type='text/css' media='all'>
+
+    </environment>
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body class="home page-template-default page page-id-5514 gdlr-core-body financity-body financity-body-front financity-full  financity-with-sticky-navigation gdlr-core-link-to-lightbox">
+    <div class="financity-body-outer-wrapper ">
+        <div class="financity-body-wrapper clearfix  financity-with-transparent-header financity-with-frame">
+            <div class="financity-header-background-transparent">
+                <div class="financity-top-bar">
+                    <div class="financity-top-bar-background"></div>
+                    <div class="financity-top-bar-container clearfix financity-container ">
+                        <div class="financity-top-bar-left financity-item-pdlr">
+                            <span class="gdlr-core-dropdown-tab gdlr-core-js clearfix">
+                                <span class="gdlr-core-dropdown-tab-title">
+                                    <span class="gdlr-core-head">VietNam</span><span class="gdlr-core-dropdown-tab-head-wrap"><span class="gdlr-core-dropdown-tab-head gdlr-core-active" data-index="0">HCM CITY</span><span class="gdlr-core-dropdown-tab-head " data-index="1">HCM CITY</span></span>
+                                </span><span class="financity-top-bar-divider financity-right-margin"></span><span class="gdlr-core-dropdown-tab-content-wrap"><span class="gdlr-core-dropdown-tab-content gdlr-core-active" data-index="0"> <i class="fa fa-clock-o" style="font-size: 17px;color: #a5bfff;margin-right: 10px;"></i> <strong>Mon - Fri 10:00-18:00</strong> <i class="fa fa-phone" style="font-size: 17px;color: #a5bfff;margin-left: 20px;margin-right: 10px;"></i><strong>+84-989-250-724</strong> </span><span class="gdlr-core-dropdown-tab-content " data-index="1"> <i class="fa fa-clock-o" style="font-size: 17px;color: #a5bfff;margin-right: 10px;"></i> <strong>Mon - Fri 10:00-18:00 </strong><i class="fa fa-phone" style="font-size: 17px;color: #a5bfff;margin-left: 20px;margin-right: 10px;"></i><strong>+34-354-5468-8</strong> </span></span>
+                            </span>
+                        </div>
+                        <div class="financity-top-bar-right financity-item-pdlr">
+                            <div class="financity-top-bar-right-text"><i class="fa fa-envelope-open-o" style="font-size: 17px;color: #a5bfff;margin-left: 20px;margin-right: 14px;"></i><strong>Email: m_living@hotmail.com</strong></div><span class="financity-top-bar-divider financity-left-margin"></span>
+                            <div class="financity-top-bar-right-social"><a href="#" target="_blank" class="financity-top-bar-social-icon" title="facebook"><i class="fa fa-facebook"></i></a><a href="#" target="_blank" class="financity-top-bar-social-icon" title="google-plus"><i class="fa fa-google-plus"></i></a><a href="#" target="_blank" class="financity-top-bar-social-icon" title="pinterest"><i class="fa fa-pinterest-p"></i></a><a href="#" target="_blank" class="financity-top-bar-social-icon" title="twitter"><i class="fa fa-twitter"></i></a><a href="#" target="_blank" class="financity-top-bar-social-icon" title="instagram"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <header class="financity-header-wrap financity-header-style-plain  financity-style-menu-right financity-sticky-navigation financity-style-slide" data-navigation-offset="75px">
+                    <div class="financity-header-background"></div>
+                    <div class="financity-header-container  financity-container">
+                        <div class="financity-header-container-inner clearfix">
+                            <div class="financity-navigation financity-item-pdlr clearfix ">
+                                <div class="financity-main-menu" id="financity-main-menu">
+                                    <ul id="menu-main-navigation-1" class="sf-menu">
+                                        <li class="menu-item menu-item-home current-menu-item page_item page-item-2039 current_page_item financity-normal-menu">
+                                            <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i>Home</a>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children financity-normal-menu">
+                                            <a class="sf-with-ul-pre" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children financity-normal-menu">
+                                            <a class="sf-with-ul-pre">Banking Services</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item" data-size="60"><a href="/Account/Withdraw">Widthdraw</a></li>
+                                                <li class="menu-item" data-size="60"><a href="/Account/Deposit">Deposit</a></li>
+                                                <li class="menu-item" data-size="60"><a href="/Account/Transfer">Transfer funds</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children financity-mega-menu">
+                                            <a class="sf-with-ul-pre" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                                        </li>
+
+                                        @if (Context.Session.GetString("SignedInUserEmail") != null)
+                                        {
+                                            <li class="menu-item menu-item-has-children financity-normal-menu">
+                                                <a style="color:red;" class="sf-with-ul-pre">Log out</a>
+                                                <ul class="sub-menu">
+                                                    <li class="menu-item" data-size="60"><a href="/Account/Edit">Edit Profile</a></li>
+                                                    <li class="menu-item" data-size="60"><a href="/Home/ViewTransaction">View history transactions</a></li>
+                                                    <li class="menu-item" data-size="60"><a href="/Account/SignOut">Log out</a></li>
+                                                </ul>
+                                            </li>
+
+                                        }
+                                        else
+                                        {
+                                            <li class="menu-item menu-item-has-children financity-mega-menu">
+                                                <a class="sf-with-ul-pre" asp-area="" asp-controller="Account" asp-action="Signin">Login</a>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                    <div class="financity-navigation-slide-bar" id="financity-navigation-slide-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <div class="financity-page-wrapper" id="financity-page-wrapper">
+                <div class="gdlr-core-page-builder-body">
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 58px 0px 0px 0px;" id="gdlr-core-wrapper-1">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #172852 ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-revolution-slider-item gdlr-core-item-pdlr gdlr-core-item-pdb " style="padding-bottom: 0px;">
+                                        <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+                                            <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
+                                                <ul>
+                                                    <li data-index="rs-2" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="upload/slider-2-1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                                        <img src="~/upload/slider-2-1.jpg" alt="" title="Homepage 2" data-bgposition="center top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="110" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="off" class="rev-slidebg" data-no-retina="">
+                                                        <div class="tp-caption   tp-resizeme" id="slide-2-layer-1" data-x="28" data-y="center" data-voffset="-20" data-width="['auto']" data-height="['auto']" data-type="text" data-responsive_offset="on" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 128px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Montserrat;">growing business</div>
+                                                        <div class="tp-caption   tp-resizeme" id="slide-2-layer-6" data-x="37" data-y="center" data-voffset="-95" data-width="['auto']" data-height="['auto']" data-type="text" data-responsive_offset="on" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-size: 60px; font-weight: 400; color: #89a6ef; letter-spacing: 0px;font-family:Montserrat;">we help</div>
+                                                        <div class="tp-caption   tp-resizeme" id="slide-2-layer-2" data-x="38" data-y="center" data-voffset="107" data-width="['724']" data-height="['65']" data-type="text" data-responsive_offset="on" data-frames='[{"delay":280,"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; min-width: 724px; max-width: 724px; max-width: 65px; max-width: 65px; white-space: normal; font-size: 20px; line-height: 32px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;">We help you managing asset, provide financial advise. Leave money issue with us and focus on your core business.</div>
+                                                        <div class="tp-caption rev-btn " id="slide-2-layer-4" data-x="36" data-y="center" data-voffset="196" data-width="['auto']" data-height="['auto']" data-type="button" data-responsive_offset="on" data-frames='[{"delay":640,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(255,255,255);bg:rgb(55,64,176);bs:solid;bw:0 0 0 0;"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[21,21,21,21]" data-paddingright="[39,39,39,39]" data-paddingbottom="[21,21,21,21]" data-paddingleft="[39,39,39,39]" style="z-index: 8; white-space: nowrap; font-size: 16px; line-height: 17px; font-weight: 700; color: #3740b0; letter-spacing: 0.5px;font-family:Asap;background-color:rgb(255,255,255);border-color:rgba(0,0,0,1);border-radius:30px 30px 30px 30px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">Contact Us</div>
+                                                    </li>
+                                                    <li data-index="rs-1" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="upload/slider-1-1-1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                                        <img src="~/upload/slider-1-1-1.jpg" alt="" title="Homepage 2" data-bgposition="center top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="110" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="off" class="rev-slidebg" data-no-retina="">
+                                                        <div class="tp-caption   tp-resizeme" id="slide-1-layer-1" data-x="24" data-y="center" data-voffset="-19" data-width="['auto']" data-height="['auto']" data-type="text" data-responsive_offset="on" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 130px; font-weight: 700; color: #ffffff; letter-spacing: 0px;font-family:Montserrat;">Financity</div>
+                                                        <div class="tp-caption   tp-resizeme" id="slide-1-layer-2" data-x="37" data-y="center" data-voffset="85" data-width="['642']" data-height="['auto']" data-type="text" data-responsive_offset="on" data-frames='[{"delay":280,"speed":300,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; min-width: 642px; max-width: 642px; white-space: normal; font-size: 20px; line-height: 32px; font-weight: 400; color: #ffffff; letter-spacing: 0px;font-family:Open Sans;">We help you managing asset, provide financial advise. Leave money issue with us and focus on your core business.</div>
+                                                        <div class="tp-caption rev-btn " id="slide-1-layer-3" data-x="36" data-y="center" data-voffset="179" data-width="['auto']" data-height="['auto']" data-type="button" data-responsive_offset="on" data-frames='[{"delay":490,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(37,64,153);bg:rgb(255,255,255);"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[19,19,19,19]" data-paddingright="[37,37,37,37]" data-paddingbottom="[19,19,19,19]" data-paddingleft="[37,37,37,37]" style="z-index: 7; white-space: nowrap; font-size: 16px; line-height: 17px; font-weight: 700; color: rgba(255,255,255,1); letter-spacing: 0.5px;font-family:Asap;background-color:rgba(55, 64, 176, 0);border-color:rgb(255,255,255);border-style:solid;border-width:2px 2px 2px 2px;border-radius:30px 30px 30px 30px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">Learn More</div>
+                                                        <div class="tp-caption rev-btn " id="slide-1-layer-4" data-x="213" data-y="center" data-voffset="180" data-width="['auto']" data-height="['auto']" data-type="button" data-responsive_offset="on" data-frames='[{"delay":640,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(37,64,153);bg:rgba(255,255,255,1);bs:solid;bw:0 0 0 0;"}]' data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[21,21,21,21]" data-paddingright="[39,39,39,39]" data-paddingbottom="[21,21,21,21]" data-paddingleft="[39,39,39,39]" style="z-index: 8; white-space: nowrap; font-size: 16px; line-height: 17px; font-weight: 700; color: rgba(255,255,255,1); letter-spacing: 0.5px;font-family:Asap;background-color:rgb(37,64,153);border-color:rgba(0,0,0,1);border-radius:30px 30px 30px 30px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">Contact Us</div>
+                                                    </li>
+                                                </ul>
+                                                <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
+                <div class="financity-copyright-wrapper">
+                    <div class="financity-copyright-container financity-container clearfix">
+                        <div class="financity-copyright-left financity-item-pdlr">Copyright 2018, All Right Reserved, Vietnam Banking System</div>
+                        <div class="financity-copyright-right financity-item-pdlr"><a href="#" target="_self"><i class="fa fa-facebook" style="font-size: 16px;color: #ffffff;margin-left: 17px;"></i></a> <a href="#" target="_self"><i class="fa fa-twitter" style="font-size: 16px;color: #ffffff;margin-left: 17px;"></i></a> <a href="#" target="_self"><i class="fa fa-linkedin" style="font-size: 16px;color: #ffffff;margin-left: 17px;"></i></a> <a href="#" target="_self"><i class="fa fa-google-plus" style="font-size: 16px;color: #ffffff;margin-left: 17px;"></i></a> <a href="#" target="_self"><i class="fa fa-instagram" style="font-size: 16px;color: #ffffff;margin-left: 17px;"></i></a></div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script type='text/javascript' src="~/js/jquery/jquery.js"></script>
+        <script type='text/javascript' src="~/js/jquery/jquery-migrate.min.js"></script>
+        <script type='text/javascript' src="~/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
+        <script type='text/javascript' src="~/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
+
+        <!--[if lt IE 9]> <script type='text/javascript' src="../../../../demo.goodlayers.com/financity/wp-content/themes/financity/js/html5.js"></script> <![endif]-->
+        <script type='text/javascript' src="~/js/jquery/ui/effect.min.js"></script>
+
+        <script type='text/javascript' src="~/js/script-core.js" tppabs="http://max-themes.net/demos/financity/demo2/js/script-core.js"></script>
+        <script type='text/javascript' src="~/plugins/goodlayers-core/plugins/combine/script.js" tppabs="http://max-themes.net/demos/financity/demo2/plugins/goodlayers-core/plugins/combine/script.js"></script>
+        <script type='text/javascript'>
+            var gdlr_core_pbf = {
+                "admin": "",
+                "video": {
+                    "width": "640",
+                    "height": "360"
+                },
+                "ajax_url": "https:////demo.goodlayers.com//financity//wp-admin//admin-ajax.php",
+                "ilightbox_skin": "dark"
+            };
+        </script>
+        <script type='text/javascript' src="~/plugins/goodlayers-core/include/js/page-builder.js"></script>
+        <script type="text/javascript" src="~/plugins/revslider/public/assets/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="~/plugins/revslider/public/assets/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="~/plugins/revslider/public/assets/js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script type="text/javascript" src="~/plugins/revslider/public/assets/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="~/plugins/revslider/public/assets/js/extensions/revolution.extension.parallax.min.js"></script>
+
+        <script type="text/javascript">
+            /*<![CDATA[*/
+            var setREVStartSize = function () {
+                try {
+                    var e = new Object,
+                        i = jQuery(window).width(),
+                        t = 9999,
+                        r = 0,
+                        n = 0,
+                        l = 0,
+                        f = 0,
+                        s = 0,
+                        h = 0;
+                    e.c = jQuery('#rev_slider_1_1');
+                    e.gridwidth = [1300];
+                    e.gridheight = [790];
+                    e.sliderLayout = "auto";
+                    if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function (e, f) {
+                        f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
+                    }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+                        var u = (e.c.width(), jQuery(window).height());
+                        if (void 0 != e.fullScreenOffsetContainer) {
+                            var c = e.fullScreenOffsetContainer.split(",");
+                            if (c) jQuery.each(c, function (e, i) {
+                                u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
+                            }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+                        }
+                        f = u
+                    } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
+                    e.c.closest(".rev_slider_wrapper").css({
+                        height: f
+                    })
+                } catch (d) {
+                    console.log("Failure at Presize of Slider:" + d)
+                }
+            };
+            setREVStartSize();
+            var tpj = jQuery;
+            var revapi1;
+            tpj(document).ready(function () {
+                if (tpj("#rev_slider_1_1").revolution == undefined) {
+                    revslider_showDoubleJqueryError("#rev_slider_1_1");
+                } else {
+                    revapi1 = tpj("#rev_slider_1_1").show().revolution({
+                        sliderType: "standard",
+                        jsFileLocation: "//demo.goodlayers.com/financity/demo2/wp-content/plugins/revslider/public/assets/js/",
+                        sliderLayout: "auto",
+                        dottedOverlay: "none",
+                        delay: 9000,
+                        navigation: {
+                            keyboardNavigation: "off",
+                            keyboard_direction: "horizontal",
+                            mouseScrollNavigation: "off",
+                            mouseScrollReverse: "default",
+                            onHoverStop: "off",
+                            arrows: {
+                                style: "uranus",
+                                enable: true,
+                                hide_onmobile: false,
+                                hide_onleave: true,
+                                hide_delay: 200,
+                                hide_delay_mobile: 1200,
+                                tmp: '',
+                                left: {
+                                    h_align: "left",
+                                    v_align: "center",
+                                    h_offset: 20,
+                                    v_offset: 0
+                                },
+                                right: {
+                                    h_align: "right",
+                                    v_align: "center",
+                                    h_offset: 20,
+                                    v_offset: 0
+                                }
+                            },
+                            bullets: {
+                                enable: true,
+                                hide_onmobile: false,
+                                style: "uranus",
+                                hide_onleave: false,
+                                direction: "horizontal",
+                                h_align: "center",
+                                v_align: "bottom",
+                                h_offset: 0,
+                                v_offset: 30,
+                                space: 10,
+                                tmp: '<span class="tp-bullet-inner"></span>'
+                            }
+                        },
+                        visibilityLevels: [1240, 1024, 778, 480],
+                        gridwidth: 1300,
+                        gridheight: 790,
+                        lazyType: "none",
+                        parallax: {
+                            type: "mouse",
+                            origo: "enterpoint",
+                            speed: 400,
+                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 55],
+                        },
+                        shadow: 0,
+                        spinner: "off",
+                        stopLoop: "off",
+                        stopAfterLoops: -1,
+                        stopAtSlide: -1,
+                        shuffle: "off",
+                        autoHeight: "off",
+                        disableProgressBar: "on",
+                        hideThumbsOnMobile: "off",
+                        hideSliderAtLimit: 0,
+                        hideCaptionAtLimit: 0,
+                        hideAllCaptionAtLilmit: 0,
+                        debugMode: false,
+                        fallbacks: {
+                            simplifyAll: "off",
+                            nextSlideOnWindowFocus: "off",
+                            disableFocusListener: false,
+                        }
+                    });
+                }
+            }); /*]]>*/
+        </script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
+
