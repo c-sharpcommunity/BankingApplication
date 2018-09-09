@@ -1,6 +1,6 @@
 # BankingApplication, a simple, cross platform, system built on .NET Core
 
-#### Writing a simple bank system to implement the following features:
+## Writing a simple bank system to implement the following features:
 
 - As user they can register new account in bank system with with LoginName and Password
 - Table (ID, LoginName, AccountNumber, Password, Balance, CreatedDate)
@@ -10,7 +10,7 @@
 - As user they can transfer funds to other existing users
 - As user they can view all their transaction history
 
-#### Requirements
+## Requirements
 
 - Use DotNet Core
 - Use Ado.Net for database access only
