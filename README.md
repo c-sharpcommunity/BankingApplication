@@ -33,10 +33,13 @@
 * Note: I created some existing Users in the scripts, you can you them or can register the new one by own yourself with the features on web.
 
 5. Since then you can enjoy and test some main features on the Banking website, such as: 
+
+* LOGIN TO THE BANK.
 * WITHDRAW THE MONEY. 
 * DEPOSIT THE MONEY.
 * TRANSFER YOUR MONEY TO ANOTHER ACCOUNT.
 * VIEW HISTORY TRANSACTION.
+* REGISTER THE NEW USER IN THE BANK.
 
 ## How to contribute
 
