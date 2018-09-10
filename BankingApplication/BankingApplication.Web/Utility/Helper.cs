@@ -20,10 +20,10 @@ namespace BankingApplication.Web.Utility
             return hashedPassword;
         }
 
-        public static string GenerateNumber(string loginName, string name)
+        public static string GenerateAccountNumber(string loginName)
         {
             string prefix = "11";
-            return (prefix + loginName.Substring(0, 4) + name.Substring(0, 4)).ToLower();
+            return (prefix + loginName.Substring(0, 4));
         }
     }
 }

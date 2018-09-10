@@ -115,15 +115,30 @@ namespace BankingApplication.Web.Controllers
             return Redirect("/Home/Index");
         }
 
-        [HttpPost]
-        public IActionResult SignUp(string loginName, string name, string password)
+        [HttpGet]
+        public IActionResult SignUp()
         {
-            string number = Helper.GenerateNumber(loginName, name);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(string userName, string password)
+        {
+            var checkUniqueAcc = _accountService.GetAccountByLoginName(userName);
+            if (checkUniqueAcc != null)
+            {
+                ModelState.AddModelError(string.Empty, "The login name has been taken, please choose another one.");
+
+                return View(checkUniqueAcc);
+            }
+
+            string number = Helper.GenerateAccountNumber(userName);
+
             string hashedPassword = !string.IsNullOrEmpty(password) ? Helper.GenerateHashedPassword(password) : string.Empty;
 
             Account acc = new Account
             {
-                LoginName = name,
+                LoginName = userName,
                 Balance = 0M,
                 CreatedDate = DateTime.Now,
                 AccountNumber = number,
@@ -131,8 +146,7 @@ namespace BankingApplication.Web.Controllers
             };
             AccountDto accDto = _accountService.CreateAccount(acc);
 
-            HttpContext.Session.SetString("SignedInUserLoginName", loginName.ToLower());
-            return View("Index", acc);
+            return Redirect("SignIn");
         }
 
         public IActionResult Deposit()
@@ -177,6 +191,13 @@ namespace BankingApplication.Web.Controllers
             string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
             if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
             Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
+
+            if (signedInUser.Balance <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "The money is out, you can not withdraw any more.");
+                return View(signedInUser);
+            }
+
             transaction.Type = TransactionType.Withdraw;
             transaction.CreatedDate = DateTime.Now;
             transaction.FromAccount = signedInUser;
@@ -200,6 +221,11 @@ namespace BankingApplication.Web.Controllers
             string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
             if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
             Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
+            if (signedInUser.Balance <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "The money is out, you can not transfer to another account any more.");
+                return View(signedInUser);
+            }
             Account toAccount = _accountService.GetAccountByAccountNumber(transaction.ToAccount.AccountNumber.Trim());
             transaction.Type = TransactionType.Transfer;
             transaction.CreatedDate = DateTime.Now;

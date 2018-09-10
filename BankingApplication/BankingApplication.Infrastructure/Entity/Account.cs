@@ -10,6 +10,7 @@ namespace BankingApplication.Infrastructure.Entity
         public string AccountNumber { get; set; }        
         public string Password { get; set; }
         public decimal Balance { get; set; }
+        public string Address { get; set; }
         public DateTime CreatedDate { get; set; }
 
         [Timestamp]

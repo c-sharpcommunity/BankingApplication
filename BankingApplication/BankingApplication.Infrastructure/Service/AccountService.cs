@@ -29,7 +29,6 @@ namespace BankingApplication.Infrastructure.Service
             }
             catch (Exception ex)
             {
-
                 accountDto.Errors.Add("CreateAccount", ex.Message);
 
                 return accountDto;
@@ -104,7 +103,7 @@ namespace BankingApplication.Infrastructure.Service
             
             try
             {
-                string connectionString = "Server = localhost; Database = SimpleBankApp; Trusted_Connection = True; ";
+                string connectionString = "Server = localhost; Database = BankingApplication; Trusted_Connection = True; ";
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
 

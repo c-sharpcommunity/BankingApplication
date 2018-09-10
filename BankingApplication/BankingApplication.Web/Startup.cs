@@ -30,7 +30,6 @@ namespace BankingApplication.Web
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             
             services.AddMvc();
-            services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.

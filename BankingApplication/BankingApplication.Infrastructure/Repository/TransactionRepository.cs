@@ -8,7 +8,7 @@ namespace BankingApplication.Infrastructure.Repository
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private string _conn = "Server = localhost; Database = SimpleBankApp; Trusted_Connection = True; ";
+        private string _conn = "Server = localhost; Database = BankingApplication; Trusted_Connection = True; ";
 
         public TransactionRepository()
         {
@@ -107,12 +107,12 @@ namespace BankingApplication.Infrastructure.Repository
                     {
                         command.CommandText = "UPDATE Account SET Balance = @Balance1 Where ID = @ID1";
 
-                        if (transaction.FromAccount.Balance > 0)
+                        if (transaction.FromAccount.Balance >= 0)
                         {
                             command.Parameters.AddWithValue("@Balance1", transaction.FromAccount.Balance);
                         }
 
-                        if (transaction.FromAccount.ID > 0)
+                        if (transaction.FromAccount.ID >= 0)
                         {
                             command.Parameters.AddWithValue("@ID1", transaction.FromAccount.ID);
                         }
@@ -124,12 +124,12 @@ namespace BankingApplication.Infrastructure.Repository
                     {
                         command.CommandText = "UPDATE Account SET Balance = @Balance2 Where ID = @ID2";
 
-                        if (transaction.ToAccount.Balance > 0)
+                        if (transaction.ToAccount.Balance >= 0)
                         {
                             command.Parameters.AddWithValue("@Balance2", transaction.ToAccount.Balance);
                         }
 
-                        if (transaction.ToAccount.ID > 0)
+                        if (transaction.ToAccount.ID >= 0)
                         {
                             command.Parameters.AddWithValue("@ID2", transaction.ToAccount.ID);
                         }

@@ -8,7 +8,7 @@ namespace BankingApplication.Infrastructure.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-        private string _conn = "Server = localhost; Database = SimpleBankApp; Trusted_Connection = True; ";
+        private string _conn = "Server = localhost; Database = BankingApplication; Trusted_Connection = True; ";
 
         public AccountRepository()
         {
@@ -74,6 +74,7 @@ namespace BankingApplication.Infrastructure.Repository
                                 p.AccountNumber = reader["AccountNumber"].ToString();
                                 p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
+                                p.Address = (string)reader["Address"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
@@ -111,6 +112,7 @@ namespace BankingApplication.Infrastructure.Repository
                                 p.AccountNumber = reader["AccountNumber"].ToString();
                                 p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
+                                p.Address = (string)reader["Address"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
@@ -148,6 +150,7 @@ namespace BankingApplication.Infrastructure.Repository
                                 p.AccountNumber = reader["AccountNumber"].ToString();
                                 p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
+                                p.Address = (string)reader["Address"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
@@ -184,6 +187,7 @@ namespace BankingApplication.Infrastructure.Repository
                                 p.AccountNumber = reader["AccountNumber"].ToString();
                                 p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
+                                p.Address = (string)reader["Address"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
@@ -220,6 +224,7 @@ namespace BankingApplication.Infrastructure.Repository
                                 p.AccountNumber = reader["AccountNumber"].ToString();
                                 p.LoginName = reader["LoginName"].ToString();
                                 p.Balance = (decimal)reader["Balance"];
+                                p.Address = (string)reader["Address"];
                                 p.CreatedDate = (DateTime)reader["CreatedDate"];
                                 p.RowVersion = (byte[])reader["RowVersion"];
                             }
@@ -238,12 +243,13 @@ namespace BankingApplication.Infrastructure.Repository
         {
             using (var conn = new SqlConnection(_conn))
             {
-                string sql = "INSERT INTO Account (AccountNumber, LoginName, Balance, CreatedDate) VALUES (@AccountNumber, @LoginName, @Balance, @CreatedDate)";
+                string sql = "INSERT INTO Account (AccountNumber, LoginName, Password, Balance, Address, CreatedDate) VALUES (@AccountNumber, @LoginName, @Password, @Balance, @Address, @CreatedDate)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@AccountNumber", entity.AccountNumber);
                 cmd.Parameters.AddWithValue("@LoginName", entity.LoginName);
                 cmd.Parameters.AddWithValue("@Password", entity.Password);
                 cmd.Parameters.AddWithValue("@Balance", entity.Balance);
+                cmd.Parameters.AddWithValue("@Address", entity.Address);
                 cmd.Parameters.AddWithValue("@CreatedDate", entity.CreatedDate);
                 try
                 {
@@ -262,7 +268,7 @@ namespace BankingApplication.Infrastructure.Repository
             using (var conn = new SqlConnection(_conn))
             using (SqlCommand command = conn.CreateCommand())
             {
-                command.CommandText = "UPDATE Account SET AccountNumber = @AccountNumber, LoginName = @LoginName, Balance = @Balance Where ID = @ID";
+                command.CommandText = "UPDATE Account SET AccountNumber = @AccountNumber, LoginName = @LoginName, Balance = @Balance, Address = @Address Where ID = @ID";
 
                 if (!string.IsNullOrEmpty(entity.AccountNumber))
                 {
@@ -283,7 +289,12 @@ namespace BankingApplication.Infrastructure.Repository
                 {
                     command.Parameters.AddWithValue("@Balance", entity.Balance);
                 }
-                
+
+                if (!string.IsNullOrEmpty(entity.Address))
+                {
+                    command.Parameters.AddWithValue("@Address", entity.Address);
+                }
+
                 if (entity.ID > 0)
                 {
                     command.Parameters.AddWithValue("@ID", entity.ID);
@@ -317,6 +328,7 @@ namespace BankingApplication.Infrastructure.Repository
                             p.AccountNumber = reader["AccountNumber"].ToString();
                             p.LoginName = reader["LoginName"].ToString();
                             p.Balance = (decimal)reader["Balance"];
+                            p.Address = (string)reader["Address"];
                             p.CreatedDate = (DateTime)reader["CreatedDate"];
                             p.RowVersion = (byte[])reader["RowVersion"];
                             list.Add(p);
