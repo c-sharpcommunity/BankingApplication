@@ -1,4 +1,4 @@
-# BankingApplication, a simple, cross platform, system built on .NET Core
+# A whole BankingApplication is built from scratch, a simple, cross platform, system built on .NET Core
 
 ## Writing a simple bank system to implement the following features:
 
@@ -23,12 +23,16 @@
 - Make sure there is not any loophole
 - Use github to share the source code
 
-#### Steps to run
+## Steps to run
 
-1. CONFIG API:
-- Update the connection string in appsettings.json.
-- Build whole solution.
-- In Visual Studio, press "Control + F5".
+1. Download source code to your local computer
+2. Run the scripts in following path: ~/BankingApplication/BankingApplication/BankingApplication.Infrastructure/Scripts/Create_Tables_Insert_Data.sql in your SSMS SQL SERVER Database
+3. Build the whole solution
+4. In Visual Studio, press "Control + F5", please keep calm some second until the beautiful template website run up.
+
+* Note: I created some existing Users in the scripts, you can you them or can register the new one by own yourself with the features on web.
+
+5. Since then you can enjoy and test some main features on the Banking website, such as: WITHDRAW THE MONEY, DEPOSIT THE MONEY, TRANSFER YOUR MONEY TO ANOTHER ACCOUNT, VIEW HISTORY TRANSACTION.
 
 ## How to contribute
 
