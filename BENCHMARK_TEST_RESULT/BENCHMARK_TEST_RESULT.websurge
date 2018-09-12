@@ -1,0 +1,146 @@
+GET http://localhost:64203/Account/Signin HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Home/Index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+------------------------------------------------------------------
+
+POST http://localhost:64203/Account/SignIn HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Content-Length: 34
+Cache-Control: max-age=0
+Origin: http://localhost:64203
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Signin
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+username=Tester01&password=1234abc
+------------------------------------------------------------------
+
+GET http://localhost:64203/Account/Deposit HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/SignIn
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+------------------------------------------------------------------
+
+POST http://localhost:64203/Account/Deposit HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Content-Length: 192
+Cache-Control: max-age=0
+Origin: http://localhost:64203
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Deposit
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+Amount=20&__RequestVerificationToken=CfDJ8Pgw8FmUCZBFk9sK_qnpkVRaFmcJ4G7NrZoQBP-xRJqlXXqxpumIDJpe71GQAhSaS5SZM1CNY8Z7mgMbGtzlbR5C8mr1WPp7Ts0MS9Wa-qbfMyG11yijsAeAB5SZRu4pWr26GPPoEEEdXH7koWoeo2Y
+------------------------------------------------------------------
+
+GET http://localhost:64203/Account/Withdraw HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Deposit
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+------------------------------------------------------------------
+
+POST http://localhost:64203/Account/Withdraw HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Content-Length: 191
+Cache-Control: max-age=0
+Origin: http://localhost:64203
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Withdraw
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+Amount=5&__RequestVerificationToken=CfDJ8Pgw8FmUCZBFk9sK_qnpkVSll2in_6ZZ1gxYutZDBVS1AW8Kg61UPu0kdmp5t-czbs__T5YKe9ot3o94Z6da1uupEnnpiTtYmYw1lBtbuzBjAq2yd-PN7a771D9n9l7qSy7I-K8EU97rS-w2FGUCTjs
+------------------------------------------------------------------
+
+GET http://localhost:64203/Account/Transfer HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Withdraw
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+------------------------------------------------------------------
+
+POST http://localhost:64203/Account/Transfer HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Content-Length: 221
+Cache-Control: max-age=0
+Origin: http://localhost:64203
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Transfer
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+ToAccount.AccountNumber=1122&Amount=10&__RequestVerificationToken=CfDJ8Pgw8FmUCZBFk9sK_qnpkVT81nOHOj0Y5uKZzvuc7YWLEq39YwMrp7N6KY4LFeX5jqg8iB2RmqGa4amT4OmuqmSE-XLQO6NrLYyDiIkWg8bNV1JAJnBLFrhN0ac5ptBP3iyA5O9x_uCvB5TCeIbDcac
+------------------------------------------------------------------
+
+GET http://localhost:64203/Home/ViewTransaction HTTP/1.1
+
+Host: localhost:64203
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:64203/Account/Transfer
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: .AspNetCore.Session=CfDJ8Pgw8FmUCZBFk9sK%2FqnpkVRYu7ePT6MfxK%2Fr%2F1ZuitrICh3jfHeCDeMZ%2FD9c3KiZrvao9bhzZS5OvoPnPW7uWk7Hn1fpPZqAqXhkrI8Aewyxw%2FB%2Fy5tbMHzUDSjP3e0N7lMEF3q0Bn1J0Z%2FcuQ9ZvDGr1QF%2B7Dge%2BGpKJdYj2B9N; .AspNetCore.Antiforgery.LHWmgWdsyGY=CfDJ8Pgw8FmUCZBFk9sK_qnpkVQxqSlPQ3p0LYz1BHI3_ASO_RZB9dBbh4xScRoTZDwxVhrSRFAL3F9cztin1dpY8LeopWGZq1WaXCAV1rp7CB7pAx6BdKEfyH8ZI8Wqa0Mq1ylftC5QaPk1SLVnHD2g2bM
+
+------------------------------------------------------------------
+
