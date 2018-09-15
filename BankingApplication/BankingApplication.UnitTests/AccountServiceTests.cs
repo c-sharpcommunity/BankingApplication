@@ -11,12 +11,15 @@ namespace BankingApplication.UnitTests
 {
     public class AccountServiceTests
     {
-        private IAccountRepository _accountRespository;
-        private ITransactionRepository _transactionRespository;
         private IAccountService _accountService;
+        private Mock<IAccountRepository> _accountRepository;
+        private Mock<ITransactionRepository> _transactionRepository;
 
         public AccountServiceTests()
         {
+            _accountRepository = new Mock<IAccountRepository>();
+            _transactionRepository = new Mock<ITransactionRepository>();
+
             _accountService = InitData();
         }
 
@@ -27,8 +30,8 @@ namespace BankingApplication.UnitTests
             {
                 Type = TransactionType.Unknown
             };
-            Assert.Null((new AccountService(_accountRespository, _transactionRespository)).ExecuteTransaction(null));
-            Assert.Null((new AccountService(_accountRespository, _transactionRespository)).ExecuteTransaction(unknownTrans));
+            Assert.Null(_accountService.ExecuteTransaction(null));
+            Assert.Null(_accountService.ExecuteTransaction(unknownTrans));
         }
 
         [Fact]
@@ -115,7 +118,7 @@ namespace BankingApplication.UnitTests
         [Fact]
         public void CheckAccountBalanceAfterDeposit()
         {
-            Account toAcc = _accountRespository.GetByAccountNumber("1122");
+            Account toAcc = _accountService.GetAccountByAccountNumber("1122");
             Transaction trans = new Transaction
             {
                 ToAccount = toAcc,
@@ -124,8 +127,8 @@ namespace BankingApplication.UnitTests
                 CreatedDate = DateTime.Now
             };
 
-            TransactionDto transDto =  (new AccountService(_accountRespository, _transactionRespository)).ExecuteTransaction(trans);
-            Account updatedAcc = _accountRespository.GetByAccountNumber("1122");
+            TransactionDto transDto = _accountService.ExecuteTransaction(trans);
+            Account updatedAcc = _accountService.GetAccountByAccountNumber("1122");
             Assert.NotNull(transDto);
             Assert.Equal(102M, updatedAcc.Balance);
         }
@@ -133,8 +136,8 @@ namespace BankingApplication.UnitTests
         [Fact]
         public void CheckAccountBalanceAfterTransfer()
         {
-            Account toAcc = _accountRespository.GetByAccountNumber("0101");
-            Account fromAcc = _accountRespository.GetByAccountNumber("1212");
+            Account fromAcc = _accountService.GetAccountByAccountNumber("0011");
+            Account toAcc = _accountService.GetAccountByAccountNumber("1122");
 
             Transaction trans = new Transaction
             {
@@ -145,9 +148,10 @@ namespace BankingApplication.UnitTests
                 CreatedDate = DateTime.Now
             };
 
-            TransactionDto transDto = (new AccountService(_accountRespository, _transactionRespository)).ExecuteTransaction(trans);
-            Account updatedToAcc = _accountRespository.GetByAccountNumber("0101");
-            Account updatedFromAcc = _accountRespository.GetByAccountNumber("1212");
+            TransactionDto transDto = _accountService.ExecuteTransaction(trans);
+
+            Account updatedFromAcc = _accountService.GetAccountByAccountNumber("0011");
+            Account updatedToAcc = _accountService.GetAccountByAccountNumber("1122");
 
             Assert.NotNull(transDto);
             Assert.Equal(98M, updatedFromAcc.Balance);
@@ -157,7 +161,7 @@ namespace BankingApplication.UnitTests
         [Fact]
         public void CheckAccountBalanceAfterWithdraw()
         {
-            Account fromAcc = _accountRespository.GetByAccountNumber("3434");
+            Account fromAcc = _accountService.GetAccountByAccountNumber("0011");
             Transaction trans = new Transaction
             {
                 FromAccount = fromAcc,
@@ -166,8 +170,8 @@ namespace BankingApplication.UnitTests
                 CreatedDate = DateTime.Now
             };
 
-            TransactionDto transDto = (new AccountService(_accountRespository, _transactionRespository)).ExecuteTransaction(trans);
-            Account updatedAcc = _accountRespository.GetByAccountNumber("3434");
+            TransactionDto transDto = _accountService.ExecuteTransaction(trans);
+            Account updatedAcc = _accountService.GetAccountByAccountNumber("0011");
             Assert.NotNull(transDto);
             Assert.Equal(98M, updatedAcc.Balance);
         }
@@ -178,36 +182,75 @@ namespace BankingApplication.UnitTests
             Account fromAcc = _accountService.GetAccountByLoginName("Tester01");
             Assert.NotNull(fromAcc);
         }
-        
+
 
         public IAccountService InitData()
         {
-            var accountRepository = new Mock<IAccountRepository>();
-            var transactionRepository = new Mock<ITransactionRepository>();
-
-            var account = new Account()
+            var account1 = new Account()
             {
+                ID = 1,
                 LoginName = "Tester01",
-                Balance = 0,
+                Balance = 100M,
                 CreatedDate = DateTime.Now,
                 AccountNumber = "0011",
                 Password = "64ad3fb166ddb41a2ca24f1803b8b722",
                 Address = "address1"
             };
 
-            var accounts = new List<Account>()
+            var account2 = new Account()
             {
-                new Account{LoginName = "Tester01", Balance=0, CreatedDate = DateTime.Now, AccountNumber="0011", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address1"},
-                new Account{LoginName = "Tester02", Balance=0, CreatedDate = DateTime.Now, AccountNumber="1122", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address2" },
-                new Account{LoginName = "Tester03", Balance=0, CreatedDate = DateTime.Now, AccountNumber="2233", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address3" },
-                new Account{LoginName = "Tester04", Balance=0, CreatedDate = DateTime.Now, AccountNumber="3344", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address4" },
+                ID = 2,
+                LoginName = "Tester02",
+                Balance = 100M,
+                CreatedDate = DateTime.Now,
+                AccountNumber = "1122",
+                Password = "64ad3fb166ddb41a2ca24f1803b8b722",
+                Address = "address2"
             };
 
-            accountRepository.Setup(_ => _.GetAll(It.IsAny<int>())).Returns(accounts);
-            accountRepository.Setup(_ => _.Create(It.IsAny<Account>())).Callback<Account>(arg => accounts.Add(arg));
-            accountRepository.Setup(_ => _.GetByLoginName(It.IsAny<string>())).Returns(account);
+            var account3 = new Account()
+            {
+                ID = 3,
+                LoginName = "Tester03",
+                Balance = 100M,
+                CreatedDate = DateTime.Now,
+                AccountNumber = "2233",
+                Password = "64ad3fb166ddb41a2ca24f1803b8b722",
+                Address = "address3"
+            };
 
-            return new AccountService(accountRepository.Object, transactionRepository.Object);
+            var account4 = new Account()
+            {
+                ID = 4,
+                LoginName = "Tester04",
+                Balance = 100M,
+                CreatedDate = DateTime.Now,
+                AccountNumber = "3344",
+                Password = "64ad3fb166ddb41a2ca24f1803b8b722",
+                Address = "address4"
+            };
+
+            var accounts = new List<Account>();
+            accounts.Add(account1);
+            accounts.Add(account2);
+            accounts.Add(account3);
+            accounts.Add(account4);
+
+
+            _accountRepository.Setup(_ => _.Delete(It.IsAny<Account>()));
+            _accountRepository.Setup(_ => _.DeleteById(It.IsAny<int>()));
+            _accountRepository.Setup(_ => _.GetById(It.Is<int>(x => x == 1))).Returns(account1);
+            _accountRepository.Setup(_ => _.GetById(It.Is<int>(x => x == 2))).Returns(account2);
+            _accountRepository.Setup(_ => _.GetByVersion(It.IsAny<int>(), It.IsAny<byte[]>())).Returns(account1);
+            _accountRepository.Setup(_ => _.GetByLoginNameAndPassword(It.IsAny<string>(), It.IsAny<string>())).Returns(account1);
+            _accountRepository.Setup(_ => _.GetByAccountNumber(It.Is<string>(x => x.Equals("0011")))).Returns(account1);
+            _accountRepository.Setup(_ => _.GetByAccountNumber(It.Is<string>(x => x.Equals("1122")))).Returns(account2);
+            _accountRepository.Setup(_ => _.GetByLoginName(It.IsAny<string>())).Returns(account1);
+            _accountRepository.Setup(_ => _.Create(It.IsAny<Account>())).Callback<Account>(arg => accounts.Add(arg));
+            _accountRepository.Setup(_ => _.Update(It.IsAny<Account>())).Callback<Account>(arg => accounts.Add(arg));
+            _accountRepository.Setup(_ => _.GetAll(It.IsAny<int>())).Returns(accounts);
+
+            return new AccountService(_accountRepository.Object, _transactionRepository.Object);
         }
 
     }
