@@ -6,8 +6,8 @@ GO
 
 CREATE TABLE [dbo].[Account](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[AccountNumber] [varchar](50) NULL,
 	[LoginName] [varchar](50) NULL,
+	[AccountNumber] [varchar](50) NULL,
 	[Password] [varchar](50) NULL,
 	[Balance] [decimal](18, 0) NULL,
 	[Address] [varchar](50) NULL,
@@ -48,8 +48,8 @@ ALTER TABLE [dbo].[Transaction] CHECK CONSTRAINT [FK_Transaction_Account1]
 GO
 
 -- Default Password: 1234abc
-INSERT INTO [Account] (AccountNumber, LoginName, Balance, [Address], CreatedDate, [Password]) VALUES 
-('0011', 'Tester01', 0, 'address1', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
-('1122', 'Tester02', 0, '', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
-('2233', 'Tester03', 0, '', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
-('3344', 'Tester04', 0, '', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' )
+INSERT INTO [Account] (LoginName, AccountNumber, Balance, [Address], CreatedDate, [Password]) VALUES 
+('Tester01', '0011', 0, 'address1', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
+('Tester02', '1122', 0, 'address2', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
+('Tester03', '2233', 0, 'address3', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' ),
+('Tester04', '3344', 0, 'address4', '2012-06-18 10:34:09.000', '64ad3fb166ddb41a2ca24f1803b8b722' )

@@ -76,9 +76,10 @@ namespace BankingApplication.Infrastructure.Service
 
                 foundAccount.RowVersion = user.RowVersion;
 
+                foundAccount.Address = user.Address;
+
                 try
                 {
-                    //var result = await _dbContext.SaveChangesAsync();
                     _accountRespository.Update(foundAccount);
                     accountDto.Account = foundAccount;
                     return accountDto;

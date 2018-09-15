@@ -56,16 +56,21 @@ namespace BankingApplication.Web.Controllers
 
         //Handle concurency update for Account model
         [HttpPost]
-        public IActionResult Edit(int? id, byte[] rowVersion)
+        public IActionResult Edit(Account account)
         {
-            if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString("SignedInUserLoginName"))) return Redirect("SignIn");
+            string signedInUserLoginName = HttpContext.Session.GetString("SignedInUserLoginName");
 
-            if (id == null)
+            if (string.IsNullOrWhiteSpace(signedInUserLoginName)) return Redirect("SignIn");
+
+            if (account.ID == 0)
             {
                 return NotFound();
             }
+            
+            Account signedInUser = _accountService.GetAccountByLoginName(signedInUserLoginName);
 
-            var accountToUpdate = new Account { ID = id.GetValueOrDefault(), RowVersion = rowVersion };
+            var accountToUpdate = new Account { ID = account.ID, RowVersion = account.RowVersion, LoginName = signedInUser.LoginName, AccountNumber = signedInUser.AccountNumber, Address = account.Address };
+
             TryUpdateModelAsync(accountToUpdate);
 
             AccountDto accDto = _accountService.UpdateAccount(accountToUpdate);
@@ -84,7 +89,7 @@ namespace BankingApplication.Web.Controllers
             {
                 return View(accountToUpdate);
             }
-            return View("Index", accDto.Account);
+            return Redirect("Index");
         }
 
         [HttpGet]
@@ -122,31 +127,33 @@ namespace BankingApplication.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult SignUp(string userName, string password)
+        public IActionResult SignUp(Account account)
         {
-            var checkUniqueAcc = _accountService.GetAccountByLoginName(userName);
+            var checkUniqueAcc = _accountService.GetAccountByLoginName(account.LoginName);
             if (checkUniqueAcc != null)
             {
-                ModelState.AddModelError(string.Empty, "The login name has been taken, please choose another one.");
+                ModelState.AddModelError(string.Empty, "The login name has been taken, please choose another name.");
 
                 return View(checkUniqueAcc);
             }
 
-            string number = Helper.GenerateAccountNumber(userName);
+            string number = Helper.GenerateAccountNumber(account.LoginName);
 
-            string hashedPassword = !string.IsNullOrEmpty(password) ? Helper.GenerateHashedPassword(password) : string.Empty;
+            string hashedPassword = !string.IsNullOrEmpty(account.Password) ? Helper.GenerateHashedPassword(account.Password) : string.Empty;
 
             Account acc = new Account
             {
-                LoginName = userName,
+                LoginName = account.LoginName,
+                Address = account.Address,
                 Balance = 0M,
                 CreatedDate = DateTime.Now,
                 AccountNumber = number,
                 Password = hashedPassword
             };
+
             AccountDto accDto = _accountService.CreateAccount(acc);
 
-            return Redirect("SignIn");
+            return RedirectToAction("SignIn");
         }
 
         public IActionResult Deposit()
@@ -195,7 +202,7 @@ namespace BankingApplication.Web.Controllers
             if (signedInUser.Balance <= 0)
             {
                 ModelState.AddModelError(string.Empty, "The money is out, you can not withdraw any more.");
-                return View(signedInUser);
+                return View(transaction);
             }
 
             transaction.Type = TransactionType.Withdraw;
@@ -224,7 +231,7 @@ namespace BankingApplication.Web.Controllers
             if (signedInUser.Balance <= 0)
             {
                 ModelState.AddModelError(string.Empty, "The money is out, you can not transfer to another account any more.");
-                return View(signedInUser);
+                return View(transaction);
             }
             Account toAccount = _accountService.GetAccountByAccountNumber(transaction.ToAccount.AccountNumber.Trim());
             transaction.Type = TransactionType.Transfer;

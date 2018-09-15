@@ -268,7 +268,7 @@ namespace BankingApplication.Infrastructure.Repository
             using (var conn = new SqlConnection(_conn))
             using (SqlCommand command = conn.CreateCommand())
             {
-                command.CommandText = "UPDATE Account SET AccountNumber = @AccountNumber, LoginName = @LoginName, Balance = @Balance, Address = @Address Where ID = @ID";
+                command.CommandText = "UPDATE Account SET AccountNumber = @AccountNumber, LoginName = @LoginName, Address = @Address Where ID = @ID";
 
                 if (!string.IsNullOrEmpty(entity.AccountNumber))
                 {
@@ -283,11 +283,6 @@ namespace BankingApplication.Infrastructure.Repository
                 if (!string.IsNullOrEmpty(entity.Password))
                 {
                     command.Parameters.AddWithValue("@Password", entity.Password);
-                }
-
-                if (entity.Balance > 0)
-                {
-                    command.Parameters.AddWithValue("@Balance", entity.Balance);
                 }
 
                 if (!string.IsNullOrEmpty(entity.Address))
