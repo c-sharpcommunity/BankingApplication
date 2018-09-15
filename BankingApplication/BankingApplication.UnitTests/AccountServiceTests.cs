@@ -4,6 +4,8 @@ using BankingApplication.Infrastructure.Repository;
 using BankingApplication.Infrastructure.Service;
 using System;
 using Xunit;
+using Moq;
+using System.Collections.Generic;
 
 namespace BankingApplication.UnitTests
 {
@@ -11,6 +13,12 @@ namespace BankingApplication.UnitTests
     {
         private IAccountRepository _accountRespository;
         private ITransactionRepository _transactionRespository;
+        private IAccountService _accountService;
+
+        public AccountServiceTests()
+        {
+            _accountService = InitData();
+        }
 
         [Fact]
         public void TestInvalidTransaction()
@@ -162,6 +170,44 @@ namespace BankingApplication.UnitTests
             Account updatedAcc = _accountRespository.GetByAccountNumber("3434");
             Assert.NotNull(transDto);
             Assert.Equal(98M, updatedAcc.Balance);
+        }
+
+        [Fact]
+        public void CheckDuplicatedLoginNameIssue()
+        {
+            Account fromAcc = _accountService.GetAccountByLoginName("Tester01");
+            Assert.NotNull(fromAcc);
+        }
+        
+
+        public IAccountService InitData()
+        {
+            var accountRepository = new Mock<IAccountRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
+
+            var account = new Account()
+            {
+                LoginName = "Tester01",
+                Balance = 0,
+                CreatedDate = DateTime.Now,
+                AccountNumber = "0011",
+                Password = "64ad3fb166ddb41a2ca24f1803b8b722",
+                Address = "address1"
+            };
+
+            var accounts = new List<Account>()
+            {
+                new Account{LoginName = "Tester01", Balance=0, CreatedDate = DateTime.Now, AccountNumber="0011", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address1"},
+                new Account{LoginName = "Tester02", Balance=0, CreatedDate = DateTime.Now, AccountNumber="1122", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address2" },
+                new Account{LoginName = "Tester03", Balance=0, CreatedDate = DateTime.Now, AccountNumber="2233", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address3" },
+                new Account{LoginName = "Tester04", Balance=0, CreatedDate = DateTime.Now, AccountNumber="3344", Password="64ad3fb166ddb41a2ca24f1803b8b722", Address="address4" },
+            };
+
+            accountRepository.Setup(_ => _.GetAll(It.IsAny<int>())).Returns(accounts);
+            accountRepository.Setup(_ => _.Create(It.IsAny<Account>())).Callback<Account>(arg => accounts.Add(arg));
+            accountRepository.Setup(_ => _.GetByLoginName(It.IsAny<string>())).Returns(account);
+
+            return new AccountService(accountRepository.Object, transactionRepository.Object);
         }
 
     }

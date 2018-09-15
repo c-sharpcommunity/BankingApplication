@@ -305,7 +305,7 @@ namespace BankingApplication.Infrastructure.Repository
 
         public IEnumerable<Account> GetAll(int id)
         {
-            string sql = "Select * FROM Account ORDER BY Nome";
+            string sql = "Select * FROM Account";
             using (var conn = new SqlConnection(_conn))
             {
                 var cmd = new SqlCommand(sql, conn);
