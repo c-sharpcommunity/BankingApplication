@@ -34,12 +34,13 @@
 
 5. Since then you can enjoy and test some main features on the Banking website, such as: 
 
+* REGISTER THE NEW USER IN THE BANK.
 * LOGIN TO THE BANK.
+* EDIT YOUR PROFILE.
 * WITHDRAW THE MONEY. 
 * DEPOSIT THE MONEY.
 * TRANSFER YOUR MONEY TO ANOTHER ACCOUNT.
 * VIEW HISTORY TRANSACTION.
-* REGISTER THE NEW USER IN THE BANK.
 
 ## How to contribute
 

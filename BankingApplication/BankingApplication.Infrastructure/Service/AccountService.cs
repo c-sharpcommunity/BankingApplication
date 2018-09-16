@@ -87,7 +87,6 @@ namespace BankingApplication.Infrastructure.Service
                 catch (DBConcurrencyException ex)
                 {
                     accountDto.Account = user;
-                    GenerateAccountErrorsLog(string.Empty, foundAccount, ex, accountDto.Errors);
                     return accountDto;
                 }
             }
@@ -156,9 +155,7 @@ namespace BankingApplication.Infrastructure.Service
 
             catch (DBConcurrencyException ex)
             {
-                //wrong account info or balance
-                if (trans.ToAccount != null) GenerateAccountErrorsLog("ToAccount", trans.ToAccount, ex, transDto.Errors);
-                if (trans.FromAccount != null) GenerateAccountErrorsLog("FromAccount", trans.FromAccount, ex, transDto.Errors);
+                throw ex;
             }
             transDto.Transaction = trans;
             return transDto;
@@ -191,42 +188,6 @@ namespace BankingApplication.Infrastructure.Service
         {
             if (trans == null || trans.Amount <= 0 || trans.FromAccount.Balance < trans.Amount) return "Invalid amount";
             return string.Empty;
-        }
-
-
-        private Dictionary<string, string> GenerateAccountErrorsLog(string prefix, Account accountToUpdate, DBConcurrencyException ex, Dictionary<string, string> errors)
-        {
-            string strErrMsg = ex.Message;
-            string strRowErrMsg = ex.Row[0].ToString();
-
-            if (strRowErrMsg == null)
-            {
-                errors.Add("DeletedAccount", "Could not save changes. The account was deleted.");
-            }
-            else
-            {
-                //var databaseValues = (Account)databaseEntry.ToObject();
-                //if (databaseValues.LoginName != clientValues.LoginName)
-                //{
-                //    if (string.IsNullOrEmpty(prefix)) errors.Add("LoginName", $"Current value: {databaseValues.LoginName}");
-                //    else errors.Add($"{prefix}.LoginName", $"Current value: {databaseValues.LoginName}");
-                //}
-                //if (databaseValues.Address != clientValues.Address)
-                //{
-                //    if (string.IsNullOrEmpty(prefix)) errors.Add("Address", $"Current value: {databaseValues.Address}");
-                //    else errors.Add($"{prefix}.Address", $"Current value: {databaseValues.Address}");
-                //}
-                //if (databaseValues.Balance != clientValues.Balance)
-                //{
-                //    if (string.IsNullOrEmpty(prefix)) errors.Add("Address", $"Current value: {databaseValues.Address}");
-                //    else errors.Add($"{prefix}.Balance", $"Current value: {databaseValues.Balance}");
-                //}
-
-                //accountToUpdate.RowVersion = (byte[])databaseValues.RowVersion;
-                accountToUpdate.RowVersion = new byte[2];
-            }
-
-            return errors;
         }
 
         #endregion
