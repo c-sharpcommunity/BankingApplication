@@ -132,7 +132,7 @@ namespace BankingApplication.Web.Controllers
             var checkUniqueAcc = _accountService.GetAccountByLoginName(account.LoginName);
             if (checkUniqueAcc != null)
             {
-                ModelState.AddModelError(string.Empty, "The login name has been taken, please choose another name.");
+                ModelState.AddModelError(string.Empty, "The login name " + account.LoginName +" has been duplicated, please choose another name.");
 
                 return View(checkUniqueAcc);
             }
